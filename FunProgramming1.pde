@@ -3,32 +3,26 @@
   * be sure to paste the second class at the end 
   */
 
-int amount = 300;
-int[] x = new int[amount];
-int[] y = new int[amount];
-int[] z = new int[amount];
+int frames = 20;
+PGraphics pg[] = new PGraphics[frames];
 
 void setup() {
-  size(500, 400, P3D);
-  background(0);
-  noFill();
-  stroke(255);
-  strokeWeight(4);
-  for(int i = 0; i<amount; i++) {
-    x[i] = int(random(-150, 150));
-    y[i] = int(random(-150, 150));
-    z[i] = int(random(-150, 150));
+  size(500, 500);
+  for(int i=0; i<frames; i++) {
+    pg[i] = createGraphics(width, height);
+    pg[i].beginDraw();
+    pg[i].background(0);
+    pg[i].stroke(255);
+    pg[i].strokeWeight(3);
+    pg[i].endDraw();
   }
 }
 void draw() {
-  background(0);
-  
-  translate(width/2, height/2);
-  
-  rotateY(frameCount / 100.0);
-  
-  box(300);
-  for(int i = 0; i<amount; i++) {
-    point(x[i], y[i], z[i]);
+  int currFrame = frameCount % frames; // 0 .. 19
+  if((width>mouseX)&&(mouseX>0)&&(height>mouseY)&&(mouseY>0)) {
+    pg[currFrame].beginDraw();
+    pg[currFrame].line(mouseX, mouseY, pmouseX, pmouseY);
+    pg[currFrame].endDraw();
   }
+  image(pg[currFrame], 0, 0);
 }
