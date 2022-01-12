@@ -2,8 +2,7 @@
   * If your code contains more than one class, 
   * be sure to paste the second class at the end 
   */
-  
-  float oldx;
+ float oldx;
 float oldy;
 float a;
 float w;
@@ -36,13 +35,13 @@ void draw() {
   
   if(oldx < 0 || oldy < 0 || oldx > width || oldy > height) {
     if(oldy>height)
-      newy=height;
+      oldy=height-2;
     if(oldy<0)
-      newy=0;
+      oldy=0+2;
     if(oldx>width)
-      newx=width;
+      oldx=width-2;
     if(oldx<0)
-      newx=0;
+      oldx=0+2;
     reset();
   }
 }
